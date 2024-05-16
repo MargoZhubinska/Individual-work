@@ -4,3 +4,4 @@
  https://github.com/MargoZhubinska/Individual-work/blob/main/java
 
  ### For python
+https://github.com/MargoZhubinska/Individual-work/blob/main/python
