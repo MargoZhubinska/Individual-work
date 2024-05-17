@@ -2,7 +2,7 @@
 
  ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java)
  
- ```
+ ```java
 import java.util.Scanner;
 
 class HelloWorld {
