@@ -1,4 +1,3 @@
-```
 
 import java.util.Scanner;
 
@@ -65,5 +64,3 @@ class HelloWorld {
         return false;
     }
 }
-
-```
