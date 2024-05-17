@@ -1,7 +1,9 @@
 ## Wotech indivitual tasks
 
  ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java)
- 
+ <details>
+  <summary>The code</summary>
+  
  ```java
 import java.util.Scanner;
 
@@ -70,5 +72,5 @@ class HelloWorld {
 }
 
 ```
-
+</details>
  ### For [python](https://github.com/MargoZhubinska/Individual-work/blob/main/python)
