@@ -2,7 +2,7 @@
 
  ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java)
  <details>
-  <summary>The code</summary>
+  <summary>The Tic-Tac-Toe easy code</summary>
   
  ```java
 import java.util.Scanner;
