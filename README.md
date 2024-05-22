@@ -1,6 +1,6 @@
 ## Wotech indivitual tasks
 
- ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java)
+ ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java) :coffee:
  <details>
   <summary>The Tic-Tac-Toe easy code</summary>
   
@@ -74,4 +74,78 @@ class HelloWorld {
 ```
 </details>
 
- ### For [python](https://github.com/MargoZhubinska/Individual-work/blob/main/python)
+ ### For [python](https://github.com/MargoZhubinska/Individual-work/blob/main/python) :snake:
+ <details>
+  <summary>Bank medium and hard level</summary>
+  
+  ```python
+
+  print("Welcome to MargoBank!")
+
+balance = 0
+
+while True:
+    deposit = input('Enter your amount of money to deposit, \nwrite "Exit" to stop or "Withdraw" to withdraw money: ')
+    if deposit.lower() == 'exit':
+        print(f'Thank you for choosing our bank! Your total balance is:  {balance}')
+        break
+    elif deposit.lower() == 'withdraw':
+        try:
+            withdrawal = int(input('Enter the amount of money to withdraw :' ))
+            if balance < withdrawal:
+                    print('Withdrawal is not possible! Insufficient funds!')
+            else:
+                    balance -= withdrawal
+                    print(f'Your balance {balance}')
+        except:
+            print('Invalid input! Please enter whole  numbers, "Exit" or "Withdraw" !')
+
+    else:
+        try:
+            deposit_int = int(deposit)
+            balance += deposit_int
+        except:
+            print('Invalid input! Please enter whole  numbers or "Exit" !'
+            
+ ```
+```python
+print("Welcome to MargoBank!")
+print("\nWhat would you like to do?") 
+print("1. Deposit money") 
+print("2. Withdraw money") 
+print("3. Check balance") 
+print("4. Exit")
+balance = 0
+
+while True:
+    try:
+        choice = int(input('Enter action 1. - 4.: '))
+        if choice == 1:
+            try:
+                deposit = int(input('Enter your amount of money to deposit : '))
+                balance += deposit
+            except:
+                print('Invalid input! Please enter whole numbers!')
+        elif choice == 2:
+            try:
+                withdrawal = int(input('Enter the amount of money to withdraw :' ))
+                if balance < withdrawal:
+                        print('Withdrawal is not possible! Insufficient funds!')
+                else:
+                        balance -= withdrawal
+            except:
+                print('Invalid input! Please enter whole numbers!')
+        elif choice == 3:
+            print(f'Your balance: {balance}')
+        elif choice == 4:
+            print(f'Thank you for choosing our bank! Your total balance is:  {balance}')
+            break
+            
+        else:
+            print('Invalid choice! Please enter numbers from 1 - 4!')
+    except:
+        print('Invalid input! Please enter whole  numbers 1 - 4')
+
+```
+
+ </details>           
