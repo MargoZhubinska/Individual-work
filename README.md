@@ -33,7 +33,7 @@ class HelloWorld {
             grid[row][column] = 1;
             printGrid(grid,size);
             
-            win = checkWin(grid,size);
+            win = checkWinRow(grid,size) || checkWinCol(grid,size);
             
             if(win) {
                 System.out.println("Congratulations! You won!");
@@ -53,7 +53,7 @@ class HelloWorld {
         }
     }
     
-    public static boolean checkWin( int[][] grid, int size) {
+    public static boolean checkWinRow(int[][] grid, int size) {
         for(int i = 0; i < size; i++) {
             boolean rowWin = true;
             for(int j = 1; j < size; j++){
@@ -69,8 +69,24 @@ class HelloWorld {
         }
         return false;
     }
+    
+    public static boolean checkWinCol(int[][] grid, int size) {
+        for(int j = 0; j < size; j++) {
+            boolean colWin = true;
+            for(int i = 0; i < size; i++){
+                if(grid[i][j] != grid[0][j] || grid[0][j] == 0){
+                colWin =  false;
+                break;
+            }
+            
+        }
+            if(colWin) {
+            return true;
+            }
+        }
+        return false;
+    } 
 }
-
 ```
 </details>
 
