@@ -2,7 +2,7 @@
 
  ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java) :coffee:
  <details>
-  <summary>The Tic-Tac-Toe easy code</summary>
+  <summary>The Tic-Tac-Toe medium code</summary>
   
  ```java
 import java.util.Scanner;
