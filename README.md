@@ -129,6 +129,111 @@ class HelloWorld {
 ```
 </details>
 
+<details>
+  <summary>BookManager (hard)</summary>
+
+  ```java
+public class Book{
+  public String title;
+  public String author;
+  public int year;
+
+  public Book(String title, String author, int year){
+    this.title = title;
+    this.author = author;
+    this.year = year;
+  }
+}
+```
+```java
+import java.util.ArrayList;
+
+public class BookManager{
+
+  public ArrayList<Book> books = new ArrayList<Book>();
+
+  public void addBook(Book book){
+    books.add(book);
+  }
+
+  public void removeBook(String title){
+    books.removeIf(x -> x.title.equals(title));
+  }
+
+  public ArrayList<Book> getBooks(){
+    return books;
+  }
+}
+```
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static BookManager bookManager = new BookManager();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while(true){
+            System.out.println("Press 1 to add a book");
+            System.out.println("Press 2 to remove a book");
+            System.out.println("Press 3 to show all books");
+            System.out.println("Press X to exit");
+    
+            String userInput = scanner.nextLine();
+                if (userInput.equals("1")) {
+                    addBook();
+                } else if (userInput.equals("2")) {
+                    removeBook();
+                } else if (userInput.equals("3")) {
+                    showBooks();
+                } else if (userInput.equals("x")) {
+                    
+                    System.out.println("Book Manager is closed.");
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please try again.");
+             }
+        }
+    scanner.close();
+    }
+
+    public static void addBook(){
+        clearScreen();
+        System.out.println("Please input the title of the book:");
+        var title = scanner.nextLine();
+        System.out.println("Please input the author of the book:");
+        var author = scanner.nextLine();
+        System.out.println("Please input the year of the book:");
+        var year = scanner.nextInt();
+        scanner.nextLine();
+        var book = new Book(title, author, year);
+        bookManager.addBook(book);
+    
+    }
+
+    public static void removeBook(){
+        clearScreen();
+        System.out.println("Please input the title of the book to remove:");
+        var removedBook = scanner.nextLine();
+        bookManager.removeBook(removedBook);
+    }
+
+    public static void showBooks(){
+        System.out.println("The list of books:");
+        var allBooks = bookManager.getBooks();
+        for(var books: allBooks){
+            System.out.println(books.title + " by " + books.author + " (" + books.year + ")");    
+        }
+    }
+
+    private static void clearScreen(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+}
+```
+</details>    
+
  ### For [python](https://github.com/MargoZhubinska/Individual-work/blob/main/python) :snake:
  <details>
   <summary>Bank medium and hard level</summary>
