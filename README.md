@@ -234,7 +234,7 @@ public class Main {
 ```
 </details>    
 
- ### For [python](https://github.com/MargoZhubinska/Individual-work/blob/main/python) :snake:
+ ### For [python](https://github.com/MargoZhubinska/Individual-work/tree/main/Python) :snake:
  <details>
   <summary>Bank medium and hard level</summary>
   
