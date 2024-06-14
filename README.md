@@ -1,6 +1,6 @@
 ## Wotech indivitual tasks
 
- ### For [java](https://github.com/MargoZhubinska/Individual-work/blob/main/java) :coffee:
+ ### For [java](https://github.com/MargoZhubinska/Individual-work/tree/main/Java) :coffee:
  <details>
   <summary>The Tic-Tac-Toe medium code</summary>
   
