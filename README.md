@@ -308,4 +308,80 @@ while True:
 
 ```
 
- </details>           
+ </details>
+
+ <details>
+  <summary>OnlineShop</summary>
+
+  ```python
+import datetime
+
+class Client:
+    def __init__(self, id, name, account):
+        self.id = id
+        self.name = name
+        self.account = account
+        self.transactions = []
+
+    def add_transactions(self, transaction):
+        self.transactions.append(transaction)
+
+
+class Item:
+    def __init__(self,article, item_name, price):
+        self.article = article
+        self.item_name = item_name
+        self.price = float(price)
+
+class Transaction:
+    def __init__(self, transaction_id, currency, client, items):
+        self.transaction_id = transaction_id
+        self.currency = currency
+        self.client = client
+        self.items = items
+        self.amount = 0
+
+        for item in items:
+            self.amount +=item.price
+        self.amount = round(self.amount, 2)
+
+        self.time_stamp = datetime.datetime.now()
+
+
+
+clients = []
+
+clients.append(Client('1', 'Anna', 'LV123456789'))
+clients.append(Client('2', 'Margarita', 'LV987654321'))
+clients.append(Client('3', 'Janis', 'LV678912345'))
+
+items = []
+
+items.append(Item('012345', 'Soap', 2.49))
+items.append(Item('567834', 'Toothbrush', 4.50))
+items.append(Item('524803', 'Cream', 20.99))
+items.append(Item('890890', 'Laundry detergent', 8.79))
+items.append(Item('237845', 'Shower gel', 5.24))
+
+transactions = []
+
+transactions.append(Transaction('001', 'EUR', clients[0], [items[0]]))
+transactions.append(Transaction('002', 'EUR', clients[1],[items[2], items [4]]))
+transactions.append(Transaction('003', 'EUR', clients[2], [items[3], items[0]]))
+transactions.append(Transaction('004', 'EUR', clients[2], [items[1]]))
+
+for transaction in transactions:
+    transaction.client.add_transactions(transaction)
+
+
+print('Client:')
+for client in clients:
+    print(f'{client.id} {client.name} {client.account}')
+    print("Transactions:")
+    for transaction in client.transactions:
+        print(f' {transaction.transaction_id} {transaction.amount} {transaction.currency} {transaction.time_stamp}')
+        print(" Items:")
+        for item in transaction.items:
+            print(f' {item.item_name}')
+```
+ </details>
