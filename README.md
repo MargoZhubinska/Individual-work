@@ -232,7 +232,309 @@ public class Main {
     }
 }
 ```
-</details>    
+</details>   
+
+
+<details>
+  <summary>The CheeseShop easy/medium</summary>
+ 
+  ```java
+  public class Cheese {
+    private String name;
+    private int weight;
+    private float price;
+
+    public Cheese(String name, int weight, float price) {
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getWeight() {
+        return weight;
+    }
+    public float getPrice() {
+        return price;
+    }
+}
+```
+```java
+import java.util.ArrayList;
+
+public class CheeseService{
+
+    private ArrayList<Cheese> cheeses = new ArrayList<Cheese>();
+
+    public void addCheese(Cheese cheese){
+        cheeses.add(cheese);
+    }
+
+    public void removeCheese(String name){
+        for (var cheese : cheeses){
+            if (cheese.getName().equals(name)){
+                cheeses.remove(cheese);
+                return;
+            }
+        }
+    }
+
+    public ArrayList<Cheese> getCheese(){
+        return cheeses;
+    }
+}
+
+```
+```java
+import java.util.ArrayList;
+
+public class CheeseShop {
+
+    private ArrayList<Cheese> cart = new ArrayList<Cheese>();
+
+    public void addCheeseToCart(Cheese cheese){
+        cart.add(cheese);
+    }
+
+    public ArrayList<Cheese> getCheeseInCart(){
+        return cart;
+    }
+
+    public void removeCheeseFromCart(Cheese cheese) {
+        cart.remove(cheese);
+    }
+
+    public float checkout() {
+        float sum = 0.0f;
+        for (var cheese : cart) {
+            sum += cheese.getPrice();
+        }
+        return sum;
+    }
+    public void clearCart() {
+        cart.clear();
+    }
+}
+
+```
+```java
+import java.util.ArrayList;
+
+public class Customer {
+    private float balance;
+    private ArrayList<Cheese> ownedItems;
+
+    public Customer(float balance) {
+        this.balance = balance;
+        this.ownedItems = new ArrayList<>();
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public ArrayList<Cheese> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public boolean buyCheese(CheeseShop cheeseShop) {
+        float totalAmount = cheeseShop.checkout();
+        if (this.balance >= totalAmount) {
+            this.balance -= totalAmount;
+            this.ownedItems.addAll(cheeseShop.getCheeseInCart());
+            cheeseShop.clearCart();
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+```
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    private static Scanner scanner = new Scanner(System.in);
+    private static CheeseService cheeseService = new CheeseService();
+    private static CheeseShop cheeseShop = new CheeseShop();
+    private static Customer customer = new Customer(500.0f);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("Press 1, if you are a admin");
+            System.out.println("Press 2, if you are a customer");
+            int action = scanner.nextInt();
+            scanner.nextLine();
+            if (action == 1) {
+                adminMenu();
+            } else if (action == 2) {
+                customerMenu();
+            } else {
+                break;
+            }
+        }
+        scanner.close();
+    }
+
+    private static void adminMenu() {
+        while (true) {
+            System.out.println("Welcome Admin!");
+            System.out.println("To add cheese to store, enter 1");
+            System.out.println("To remove cheese from store, enter 2");
+            System.out.println("To see cheese list, enter 3");
+            System.out.println("To exit, enter 4");
+            int userInput = scanner.nextInt();
+            scanner.nextLine();
+            if (userInput == 1) {
+                cheeseService.addCheese(createStock());
+            } else if (userInput == 2) {
+                System.out.println("Please enter cheese name to be removed: ");
+                String removeCheeseName = scanner.nextLine();
+                cheeseService.removeCheese(removeCheeseName);
+                System.out.println("Cheese removed successfully!");
+            } else if (userInput == 3) {
+                printCheese(cheeseService.getCheese());
+            } else {
+                System.out.println("You're exiting the program...");
+                break;
+            }
+        }
+    }
+
+    private static void customerMenu() {
+        while (true) {
+            System.out.println("Press 1, to add cheese to the cart");
+            System.out.println("Press 2, to view the cart");
+            System.out.println("Press 3, to remove cheese form cart");
+            System.out.println("Press 4, to checkout");
+            int action = scanner.nextInt();
+            scanner.nextLine();
+            if (action == 1) {
+                addCheeseToCart();
+            } else if (action == 2) {
+                printCheeseInCart();
+            } else if (action == 3) {
+                removeCheeseFromCart();
+
+            } else {
+                float totalAmount = cheeseShop.checkout();
+                System.out.println("You have checked out, the amount is: " + totalAmount  + " EUR");
+                if (totalAmount > customer.getBalance()){
+                    System.out.println("Transaction failed, not enough money!");
+                } else {
+                    System.out.println("Transaction Successful!");
+                    customer.buyCheese(cheeseShop);
+                    System.out.println("Owned items: ");
+                    for(Cheese cheese : customer.getOwnedItems()){
+                        System.out.println(cheese.getName());
+                        System.out.println("(" + cheese.getWeight() + "grams)");
+                        System.out.println(cheese.getPrice() + " EUR");
+                    }
+                }
+                break;
+            }
+
+        }
+    }
+
+    public static Cheese createStock() {
+            String cheeseName = "";
+            int cheeseWeight = 0;
+            float cheesePrice = 0.0f;
+
+            while (true) {
+                boolean validInput = true;
+
+                try {
+                    System.out.println("Please enter cheese name: ");
+                    cheeseName = scanner.nextLine();
+                    if (cheeseName.trim().isEmpty() || !cheeseName.matches("[a-zA-Z ]+")) {
+                        System.out.println("Cheese name cannot be empty.");
+                        validInput = false;
+                    }
+
+                    System.out.println("Please enter cheese weight in grams: ");
+                    cheeseWeight = scanner.nextInt();
+                    if (cheeseWeight <= 0) {
+                        System.out.println("Cheese weight must be positive.");
+                        validInput = false;
+                    }
+                    scanner.nextLine();
+
+                    System.out.println("Please enter cheese price: ");
+                    cheesePrice = scanner.nextFloat();
+                    if (cheesePrice <= 0) {
+                        System.out.println("Cheese price must be positive.");
+                        validInput = false;
+                    }
+                    scanner.nextLine();
+
+                } catch (Exception e) {
+                    System.out.println("Wrong input!");
+                    scanner.nextLine();
+                    validInput = false;
+                }
+
+                if (validInput) {
+                    break;
+                } else {
+                    System.out.println("Invalid inputs detected. Please start over.");
+                }
+            }
+
+        Cheese cheese1 = new Cheese(cheeseName, cheeseWeight, cheesePrice);
+        return cheese1;
+    }
+
+
+
+    public static void printCheese(ArrayList<Cheese> cheeses) {
+                System.out.println("These are the cheese in the storage");
+                for (Cheese cheese : cheeses) {
+                    System.out.println(cheese.getName());
+                    System.out.println("(" + cheese.getWeight() + "grams)");
+                    System.out.println(cheese.getPrice() + " EUR");
+                }
+            }
+            public static void addCheeseToCart() {
+                System.out.println("Enter a cheese name you want to put in the cart: ");
+                String nameToCart = scanner.nextLine();
+
+                ArrayList<Cheese> cheeses = cheeseService.getCheese();
+                for (Cheese cheese : cheeses) {
+                    if (cheese.getName().equalsIgnoreCase(nameToCart)) {
+                        cheeseShop.addCheeseToCart(cheese);
+                        return;
+                    }
+                }
+                System.out.println("This cheese does not exist in the shop!");
+            }
+    public static void removeCheeseFromCart() {
+        ArrayList<Cheese> cart = cheeseShop.getCheeseInCart();
+        System.out.println("Provide a cheese name to remove from cart: :");
+        String name = scanner.nextLine();
+        for (Cheese cheese : cart) {
+            if (cheese.getName().equalsIgnoreCase(name)) {
+                cheeseShop.removeCheeseFromCart(cheese);
+                return;
+            }
+        }
+        System.out.println("That cheese does not exist in the cart!");
+    }
+    public static void printCheeseInCart() {
+        System.out.println("These are the items in the cart:");
+        ArrayList<Cheese> cart = cheeseShop.getCheeseInCart();
+        for (var cheese : cart) {
+            System.out.println(cheese.getName() + " (" + cheese.getWeight() + " g) - " + cheese.getPrice() + " EUR");
+        }
+    }
+}
+```
+</details>
 
  ### For [python](https://github.com/MargoZhubinska/Individual-work/tree/main/Python) :snake:
  <details>
@@ -385,3 +687,5 @@ for client in clients:
             print(f' {item.item_name}')
 ```
  </details>
+
+
