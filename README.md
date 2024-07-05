@@ -688,4 +688,22 @@ for client in clients:
 ```
  </details>
 
+<details>
+  <summary>Prices</summary>
+ 
+```python
 
+total_price = 0
+total_items = 0
+
+with open('/content/prices.txt', 'r') as file:
+    prices = file.readlines()
+
+    for number in prices:
+        total_price += float(number)
+        total_items += 1
+
+print(f'Total Price: {total_price}')
+print(f'Total Number of Purchased Items: {total_items}')
+```
+</details>
