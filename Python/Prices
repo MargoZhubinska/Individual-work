@@ -5,11 +5,9 @@ total_items = 0
 with open('/content/prices.txt', 'r') as file:
     prices = file.readlines()
 
-    for line in prices: 
-        line = line.strip() 
-        if line.replace('.', '', 1).isdigit():
-            total_price += float(line)
-            total_items += 1
+    for number in prices:
+        total_price += float(number)
+        total_items += 1
 
-print(f'Total Price: {total_price:.2f}')
+print(f'Total Price: {total_price}')
 print(f'Total Number of Purchased Items: {total_items}')
