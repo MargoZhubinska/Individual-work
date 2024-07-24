@@ -707,3 +707,19 @@ print(f'Total Price: {total_price}')
 print(f'Total Number of Purchased Items: {total_items}')
 ```
 </details>
+
+<details>
+  <summary>Titanic Data</summary>
+
+  <img width="677" alt="Screenshot 2024-07-24 at 14 39 09" src="https://github.com/user-attachments/assets/0d61dec9-d66e-4738-95d8-0627ff326f4e">
+  <img width="935" alt="Screenshot 2024-07-24 at 14 41 35" src="https://github.com/user-attachments/assets/8d1ad549-e922-4ab0-a666-b72fa15e06b1">
+  <img width="1125" alt="Screenshot 2024-07-24 at 14 49 50" src="https://github.com/user-attachments/assets/c2960658-cc44-4c90-a49d-f22f059fe9ae">
+  <img width="709" alt="Screenshot 2024-07-24 at 14 42 06" src="https://github.com/user-attachments/assets/65bdd810-5dd1-4de6-a979-e857e380497d">
+
+  </details>
+  
+
+
+  
+
+
