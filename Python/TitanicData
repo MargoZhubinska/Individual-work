@@ -1,0 +1,36 @@
+```python
+
+
+import pandas as pd
+titanic_dataset = pd.read_csv('/content/train.csv')
+titanic_dataset.head()
+titanic_dataset.shape
+titanic_dataset.info()
+titanic_dataset['Age'].value_counts(dropna=False).reset_index()
+titanic_dataset['Cabin'].value_counts(dropna=False).reset_index()
+titanic_dataset['Embarked'].value_counts(dropna=False).reset_index() #C = Cherbourg, Q = Queenstown, S = Southampton
+titanic_dataset.describe()
+titanic_dataset['Survived'].value_counts() # 0 = No, 1 = Yes
+titanic_dataset['Pclass'].value_counts() #1 = 1st, 2 = 2nd, 3 = 3rd
+titanic_dataset['Sex'].value_counts()
+sibsp_counts = titanic_dataset['SibSp'].value_counts() # # of siblings / spouses aboard the Titanic
+sibsp_counts
+titanic_dataset['Parch'].value_counts() # # of parents / children aboard the Titanic
+titanic_dataset['Ticket'].value_counts()
+titanic_dataset['Fare'].value_counts()
+import matplotlib.pyplot as plt
+
+plt.bar(sibsp_counts.index, sibsp_counts.values, color='blue', ec = 'black')
+
+plt.title('Passenger family members abroad the Titanic (excluding children and parents)')
+plt.xlabel('Number of siblings/spouses')
+plt.ylabel('Passenger count')
+plt.xticks(range(titanic_dataset['SibSp'].min(), titanic_dataset['SibSp'].max()+ 1))
+
+for i in range(len(sibsp_counts)):
+    plt.text(sibsp_counts.index[i],sibsp_counts.values[i], str(sibsp_counts.values[i]), ha = 'center', va = 'bottom' )
+
+plt.show()
+
+
+```
